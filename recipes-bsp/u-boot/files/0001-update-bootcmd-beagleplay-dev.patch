@@ -1,20 +1,20 @@
 diff --git a/configs/am62x_beagleplay_a53_defconfig b/configs/am62x_beagleplay_a53_defconfig
-index 470095e8d3..cbd3a61cf4 100644
+index 4f1be1df59..00d6fb38f3 100644
 --- a/configs/am62x_beagleplay_a53_defconfig
 +++ b/configs/am62x_beagleplay_a53_defconfig
-@@ -32,7 +32,7 @@ CONFIG_AUTOBOOT_KEYED=y
+@@ -35,7 +35,7 @@ CONFIG_AUTOBOOT_KEYED=y
  CONFIG_AUTOBOOT_PROMPT="Press SPACE to abort autoboot in %d seconds\n"
  CONFIG_AUTOBOOT_DELAY_STR="d"
  CONFIG_AUTOBOOT_STOP_STR=" "
 -CONFIG_BOOTCOMMAND="run set_led_state_start_load; run envboot; bootflow scan -lb;run set_led_state_fail_load"
-+CONFIG_BOOTCOMMAND="run set_led_state_start_load; fatload mmc 1:1 0x80000000 Image; fatload mmc 1:1 0x92000000 k3-am625-beagleplay.dtb; booti 0x80000000 - 0x92000000; run set_led_state_fail_load"
++CONFIG_BOOTCOMMAND="run set_led_state_start_load;  fatload mmc 1:1 0x80000000 Image; fatload mmc 1:1 0x92000000 k3-am625-beagleplay.dtb; booti 0x80000000 - 0x92000000; run set_led_state_fail_load"
  CONFIG_BOARD_LATE_INIT=y
  CONFIG_SPL_MAX_SIZE=0x58000
- CONFIG_SPL_HAS_BSS_LINKER_SECTION=y
-@@ -116,3 +116,12 @@ CONFIG_SYSRESET_TI_SCI=y
- CONFIG_EXT4_WRITE=y
+ CONFIG_SPL_SYS_REPORT_STACK_F_USAGE=y
+@@ -121,3 +121,13 @@ CONFIG_EXT4_WRITE=y
  CONFIG_FS_FAT_MAX_CLUSTSIZE=16384
  CONFIG_LZO=y
+ CONFIG_EFI_SET_TIME=y
 +CONFIG_ENV_SUPPORT=y
 +CONFIG_CMD_SAVEENV=y
 +CONFIG_SAVEENV=y
@@ -24,3 +24,4 @@ index 470095e8d3..cbd3a61cf4 100644
 +CONFIG_ENV_EXT4_INTERFACE="mmc"
 +CONFIG_ENV_EXT4_DEVICE_AND_PART="1:2"
 +CONFIG_ENV_EXT4_FILE="/boot/u-boot-env.bin"
++CONFIG_OF_SYSTEM_SETUP=y

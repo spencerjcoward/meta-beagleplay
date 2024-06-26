@@ -2,9 +2,10 @@ require recipes-bsp/u-boot/u-boot-ti.inc
 
 PR = "r0"
 
-PV = "2024.04"
+PV = "2024.07-rc5"
 
 SRC_URI += "file://0001-update-bootcmd-beagleplay-dev.patch"
+SRC_URI += "file://0002-ethernet-fix.patch"
 
 # For the un-initiated:
 # The actual URL you'd use with a git clone for example would be:
@@ -15,7 +16,7 @@ SRC_URI += "file://0001-update-bootcmd-beagleplay-dev.patch"
 # b) and we want git fetcher to use https protocol, hence GIT_PROTOCOL as https
 UBOOT_GIT_URI = "git://source.denx.de/u-boot/u-boot.git"
 UBOOT_GIT_PROTOCOL = "https"
-SRCREV = "25049ad560826f7dc1c4740883b0016014a59789"
+SRCREV = "c53b344475734d0d29f522b7b1d80c5b8204442d"
 
 do_create_tispl_bin_symlink() {
     if [ -e ${B}/tispl.bin_unsigned ]; then
