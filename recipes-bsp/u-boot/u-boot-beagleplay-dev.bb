@@ -16,7 +16,7 @@ SRC_URI += "file://0002-ethernet-fix.patch"
 # b) and we want git fetcher to use https protocol, hence GIT_PROTOCOL as https
 UBOOT_GIT_URI = "git://source.denx.de/u-boot/u-boot.git"
 UBOOT_GIT_PROTOCOL = "https"
-SRCREV = "c53b344475734d0d29f522b7b1d80c5b8204442d"
+SRCREV = "25049ad560826f7dc1c4740883b0016014a59789"
 
 do_create_tispl_bin_symlink() {
     if [ -e ${B}/tispl.bin_unsigned ]; then
