@@ -1,4 +1,4 @@
-bootargs_sdcard=root=/dev/mmcblk1p2 rw rootwait
+bootargs_sdcard=root=/dev/mmcblk1p2 rw rootwait ip=BEAGLEPLAY_IPADDR:::::eth0
 bootargs_nfs=root=/dev/nfs ip=BEAGLEPLAY_IPADDR:::::eth0 nfsroot=BEAGLEPLAY_HOSTIP:BEAGLEPLAY_NFSROOT,nfsvers=3,tcp rw
 bootargs=root=/dev/nfs ip=BEAGLEPLAY_IPADDR:::::eth0 nfsroot=BEAGLEPLAY_HOSTIP:BEAGLEPLAY_NFSROOT,nfsvers=3,tcp rw
 bootcmd_sdcard=fatload mmc 1:1 0xa0000000 Image; fatload mmc 1:1 0xb2000000 k3-am625-beagleplay.dtb; booti 0xa0000000 - 0xb2000000
