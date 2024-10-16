@@ -1,0 +1,19 @@
+commit d21d3dc7e07de0cc24e7ce4cc0c98ba59fae533e
+Author: Alex Lanzano <lanzano.alex@gmail.com>
+Date:   Sun Oct 13 00:07:36 2024 -0400
+
+    fix serial for beagley ai
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+index 44dfbdf89277..5d15c5d164f4 100644
+--- a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
++++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+@@ -24,7 +24,7 @@ aliases {
+ 	};
+ 
+ 	chosen {
+-		stdout-path = &main_uart0;
++		stdout-path = "serial2:115200n8";
+ 	};
+ 
+ 	memory@80000000 {

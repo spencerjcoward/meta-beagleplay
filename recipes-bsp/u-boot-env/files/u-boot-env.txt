@@ -1,7 +1,8 @@
-bootargs_sdcard=root=/dev/mmcblk1p2 rw rootwait
+bootargs_sdcard=root=/dev/mmcblk1p2 rw rootwait ip=BEAGLEPLAY_IPADDR:::::eth0
 bootargs_nfs=root=/dev/nfs ip=BEAGLEPLAY_IPADDR:::::eth0 nfsroot=BEAGLEPLAY_HOSTIP:BEAGLEPLAY_NFSROOT,nfsvers=3,tcp rw
-bootcmd_sdcard=env set bootargs $bootargs_sdcard; fatload mmc 1:1 0xa0000000 Image; fatload mmc 1:1 0xb2000000 k3-am625-beagleplay.dtb; booti 0xa0000000 - 0xb2000000
-bootcmd_tftp=env set bootargs $bootargs_nfs; run set_led_state_start_load; tftpboot 0xa0000000 Image; tftpboot 0xb2000000 k3-am625-beagleplay.dtb; if test $? -eq 0; then booti 0xa0000000 - 0xb2000000; else run set_led_state_fail_load; fi
+bootargs=root=/dev/nfs ip=BEAGLEPLAY_IPADDR:::::eth0 nfsroot=BEAGLEPLAY_HOSTIP:BEAGLEPLAY_NFSROOT,nfsvers=3,tcp rw
+bootcmd_sdcard=env set bootargs $bootargs_sdcard; run set_led_state_start_load; ext4load mmc 1:2 BEAGLEPLAY_KERNEL_ADDR /boot/Image; ext4load mmc 1:2 BEAGLEPLAY_DTB_ADDR /boot/BEAGLEPLAY_DTB; if test $? -eq 0; then booti BEAGLEPLAY_KERNEL_ADDR - BEAGLEPLAY_DTB_ADDR; else run set_led_state_fail_load; fi
+bootcmd_tftp=env set bootargs $bootargs_nfs; run set_led_state_start_load; tftpboot BEAGLEPLAY_KERNEL_ADDR Image; tftpboot BEAGLEPLAY_DTB_ADDR BEAGLEPLAY_DTB; if test $? -eq 0; then booti BEAGLEPLAY_KERNEL_ADDR - BEAGLEPLAY_DTB_ADDR; else run set_led_state_fail_load; fi
 bootcmd=run bootcmd_tftp
 bootmenu_0=tftp boot=run bootcmd_tftp
 bootmenu_1=sd card boot=run bootcmd_sdcard
